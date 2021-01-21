@@ -154,24 +154,31 @@ class BinarySearchTree {
 
   dfsInOrder(value, current) {
     current = current ? current : this.root;
-    if (current.left) return this.dfsInOrder(value, current.left);
+    if (current.left) {
+      const found = this.dfsInOrder(value, current.left);
+      if (found) return found;
+    }
+
     if (current.value === value) return current;
-    if (current.right) return this.dfsInOrder(value, current.right);
+
+    if (current.right) {
+      const found = this.dfsInOrder(value, current.right);
+      if (found) return found;
+    }
   }
 
 }
 
 const tree = new BinarySearchTree();
-tree.insert(9)
-tree.insert(4)
-tree.insert(6)
-tree.insert(20)
-tree.insert(170)
-tree.insert(15)
-tree.insert(1)
-console.log(tree.bfs(20));
-console.log(tree.dfsInOrder(20));
-JSON.stringify(traverse(tree.root))
+tree.insert(9);
+tree.insert(4);
+tree.insert(6);
+tree.insert(20);
+tree.insert(170);
+tree.insert(15);
+tree.insert(1);
+console.log(tree.dfsInOrder(15));
+//JSON.stringify(traverse(tree.root));
 
 //     9
 //  4     20
