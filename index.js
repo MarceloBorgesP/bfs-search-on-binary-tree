@@ -145,6 +145,13 @@ class BinarySearchTree {
     } 
   }
 
+  dfsInOrder(value, current) {
+    current = current ? current : this.root;
+    if (current.left) this.dfsInOrder(value, current.left);
+    if (current.value === value) return current;
+    if (current.right) this.dfsInOrder(value, current.right);
+  }
+
 }
 
 const tree = new BinarySearchTree();
@@ -156,6 +163,7 @@ tree.insert(170)
 tree.insert(15)
 tree.insert(1)
 console.log(tree.bfs(20));
+console.log(tree.dfsInOrder(20));
 JSON.stringify(traverse(tree.root))
 
 //     9
