@@ -152,6 +152,13 @@ class BinarySearchTree {
     if (current.right) this.dfsInOrder(value, current.right);
   }
 
+  dfsInOrder(value, current) {
+    current = current ? current : this.root;
+    if (current.left) return this.dfsInOrder(value, current.left);
+    if (current.value === value) return current;
+    if (current.right) return this.dfsInOrder(value, current.right);
+  }
+
 }
 
 const tree = new BinarySearchTree();
