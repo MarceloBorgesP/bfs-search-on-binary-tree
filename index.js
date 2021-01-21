@@ -131,39 +131,31 @@ class BinarySearchTree {
     }
   }
 
-  bfs(value) {
-    const children = [];
-    const current = this.root;
-
-    return this._doBFS(children, current, value);
-  }
-
-  _doBFS(children, current, value) {
-    if (current.value === value) {
-      return current;
-    }
-
+  bfs(value, children, current) {
+    children = children ? children : [];
+    current = current ? current : this.root;
+    if (current.value === value) return current;
     if (current.left) children.push(current.left);
     if (current.right) children.push(current.right);
 
-    console.log(children.map(child => child.value));
+    current = children.shift();
 
-    if (children.length) {
-      const [ firstInQueue ] = children;
-      return this._doBFS(children.slice(1), firstInQueue, value);
+    if (current) {
+      return this.bfs(value, children, current);
     } 
   }
+
 }
 
 const tree = new BinarySearchTree();
-tree.insert(9)on 
+tree.insert(9)
 tree.insert(4)
 tree.insert(6)
 tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-console.log(tree.bfs(170));
+console.log(tree.bfs(20));
 JSON.stringify(traverse(tree.root))
 
 //     9
